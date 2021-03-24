@@ -5,5 +5,11 @@
  * @returns {object} - returns the new object
  */
 export const omit = (obj, ...fields) => {
+    const entries = Object.entries(obj);
+    
+    const mapped = entries.map(([key, value]) => {
+        return !fields.includes(key) ?  [key, value] : false
+    }).filter(Boolean);
 
+    return Object.fromEntries(mapped);
 };
